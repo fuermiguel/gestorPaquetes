@@ -27,10 +27,11 @@ window.onload = function() {
         //Peso de 50 a 500 g
         if (!pesoValido(txtPeso.value)) error = error + '<p>Peso no válido</p>';
         //Dimensiones entre 10 y 100 
-        if (!(dimensionValida(txtX) && dimensionValida(txtY) && dimensionValida(txtZ))) error = error + '<p>Dimensiones no válidas</p>';
-        //Tarjeta bancaria
-
-        //codigo descuento
+        if (!(dimensionValida(txtX.value) && dimensionValida(txtY.value) && dimensionValida(txtZ.value))) error = error + '<p>Dimensiones no válidas</p>';
+        //Tarjeta bancaria 16 digitos continuos o en grupos de cuatro
+        if (!(tarjetaValida(txt.tarjetaBancaria.value))) error = error + '<p<Tarjeta no válida<p>';
+        //codigo descuento 5 letras seguidas de dos digitos
+        if (!(codigoDscuento(txtCodigoDescuento.value))) error = error + '<p>Código de descuento no válido</p>'
 
     })
 
@@ -61,5 +62,14 @@ window.onload = function() {
         return false;
     }
 
-    console.log(dimensionValida(1));
+    function tarjetaValida(tarjeta) {
+        if (/^[0-9]{16}$|^[0-9]{4}\s[0-9]{4}\s[0-9]{4}\s[0-9]{4}$/.test(tarjeta)) return true;
+        return false;
+    }
+
+    function codigoDescuento(codigo) {
+        if (/^[A-z]{5}[0-9]{2}$/.test(codigo)) return true;
+        return false;
+    }
+    console.log(tarjetaValida('1111 1111 1111 1111'));
 }
