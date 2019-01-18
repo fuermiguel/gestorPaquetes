@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="paquetes.css" />
-    <script src="gestionPAquetes.js"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/paquetes.css" />
+    <script src="./js/gestionPaquetes.js"></script>
 </head>
 
 <body>
@@ -16,37 +16,72 @@
     <form id="formulario" action="#" method="get">
 
         <div class="linea_formulario limpia">
-            <label for="ciudad">Ciudad</label>
-            <input type="text" name="ciudad" id="ciudad" autofocus/>
+            <label for="fechaEnvio">Fecha de envio</label>
+            <input type="text" name="fechaEnvio" id="fechaEnvio" autofocus/>
         </div>
 
         <div class="linea_formulario limpia">
-            <label for="ciudad">Medidas</label>
-            <textarea name="medidas" id="medidas" rows="3"></textarea>
+            <label for="cpOrigen">CP Origen</label>
+            <input type="text" name="cpOrigen" id="cpOrigen" />
         </div>
 
         <div class="linea_formulario limpia">
-            <input type="radio" name="tipo" id="medidas_manual" value="manual" checked /><span>Manual</span>
-            <input type="radio" name="tipo" id="medidas_aleatorio" value="aleatorio" /><span>Aleatorio</span>
-
-
+            <label for="cpDestino">CP Destino</label>
+            <input type="text" name="cpDestino" id="cpDestino" />
         </div>
+
         <div class="linea_formulario limpia">
-            <input type="button" name="guardar" id="guardar" value="Guardar" />
-            <input type="button" name="borrar" id="borrar" value="Borrar" />
-        </div>
-        <div class="linea_formulario limpia">
-            <input type="button" name="modificar" id="modificar" value="Modificar" /> Dia
-            <input type="number" max="30" min="1" /> Medida <input type="number" max="40" min="-10" />
+            <label for="repartidor">Repartidor</label>
+            <input type="text" name="repartidor" id="repartidor" />
         </div>
 
-        <div id="tabla-medidas">
+        <div class="linea_formulario limpia">
+            <label for="peso">Peso</label>
+            <input type="text" name="peso" id="peso" />
         </div>
-        <div id="temperatura-media" class="linea_formulario info ">
-            Temperatura media
+
+        <div class="linea_formulario limpia">
+            <label>Dimensiones</label>
+            </br>
+            <label for="dimensionx">X</label>
+            <input type="text" name="dimensionx" id="dimensionx" />
+            <label for="dimensiony">Y</label>
+            <input type="text" name="dimensiony" id="dimensiony" />
+            <label for="dimensionz">Z</label>
+            <input type="text" name="dimensionz" id="dimensionz" />
+        </div>
+
+        <div class="linea_formulario limpia">
+            <label for="pesoVolumetrico">Peso volumetrico</label>
+            <input type="text" name="pesoVolumetrico" id="pesoVolumetrico" />
+        </div>
+
+        <div class="linea_formulario limpia">
+            <label for="tarjetaBancaria">Tarjeta bancaria</label>
+            <input type="text" name="tarjetaBancaria" id="tarjetaBancaria" />
+        </div>
+
+        <div class="linea_formulario limpia">
+            <label for="codigoDescuento">Tarjeta bancaria</label>
+            <input type="text" name="codigoDescuento" id="codigoDescuento" />
+        </div>
+
+        <div class="linea_formulario limpia">
+            <input type="checkbox" name="condiciones" value="condiciones"> Acepto las condiciones<br>
+        </div>
+
+        <div class="linea_formulario limpia">
+            <input type="button" name="validar" id="validar" value="Validar" />
+
+        </div>
+
+
+
+        <div id="informacion" class="linea_formulario info ">
+            a
         </div>
         <div id="errores" class="linea_formulario error ">
-            Errores
+            b
         </div>
 
 
