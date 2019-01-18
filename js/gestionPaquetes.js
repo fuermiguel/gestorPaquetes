@@ -1,21 +1,43 @@
 window.onload = function() {
-    //Cargamos los campos en variables
+
+    //**************** Campos formulario ****************
+
     let txtFecha = document.getElementById("fechaEnvio");
     let txtCpOrigen = document.getElementById("cpOrigen");
     let txtCpDestino = document.getElementById("cpDestino");
-    let btnValidacion = document.getElementById("validar")
     let txtRepartidor = document.getElementById('repartidor');
     let txtPeso = document.getElementById('peso');
     let txtX = document.getElementById('dimensionx');
     let txtY = document.getElementById('dimensiony');
     let txtZ = document.getElementById('dimensionz');
-    let tarjetaBancaria = document.getElementById('tarjetaBancaria');
+    let txtTarjetaBancaria = document.getElementById('tarjetaBancaria');
     let txtCodigoDescuento = document.getElementById('codigoDescuento');
+    let divInformacion = document.getElementById('informacion');
+    let divErrores = document.getElementById('errores');
+    let chkverificacion = document.getElementById('condiciones');
+    let btnValidacion = document.getElementById("validar");
 
-    //Ahora asignamos los eventos
+
+    //****************Inivialización *******************
+
+    divErrores.style.display = 'none';
+    divInformacion.style.display = 'none';
+    btnValidacion.disabled = true;
+    chkverificacion.checked = false;
+
+    //************** Eventos ****************************
+
+    chkverificacion.addEventListener('change', function() {
+        if (this.checked == true) btnValidacion.disabled = false;
+        else {
+            btnValidacion.disabled = true;
+            divInformacion.style.display = 'none';
+        }
+    })
+
     btnValidacion.addEventListener('click', function() {
         //Código de validaciones
-        let errores = "";
+        let error = "";
         //Fecha de envio: Obligatorio y con formato dd/mm/aaaa
         if (!fechaValida(txtFecha.value)) error = error + '<p>Formato fecha invalido<p>';
         //CP Origen: 5digitos
@@ -29,16 +51,27 @@ window.onload = function() {
         //Dimensiones entre 10 y 100 
         if (!(dimensionValida(txtX.value) && dimensionValida(txtY.value) && dimensionValida(txtZ.value))) error = error + '<p>Dimensiones no válidas</p>';
         //Tarjeta bancaria 16 digitos continuos o en grupos de cuatro
-        if (!(tarjetaValida(txt.tarjetaBancaria.value))) error = error + '<p<Tarjeta no válida<p>';
+        if (!(tarjetaValida(txtTarjetaBancaria.value))) error = error + '<p>Tarjeta no válida<p>';
         //codigo descuento 5 letras seguidas de dos digitos
-        if (!(codigoDscuento(txtCodigoDescuento.value))) error = error + '<p>Código de descuento no válido</p>'
+        if (!(codigoDescuento(txtCodigoDescuento.value))) error = error + '<p>Código de descuento no válido</p>'
 
+        //Logica de muestra de errores e información
+        if (error != "") {
+            divErrores.style.display = 'block';
+            divInformacion.style.display = 'none';
+            divErrores.innerHTML = error;
+        } else {
+            divErrores.style.display = 'none';
+            divInformacion.style.display = 'block';
+            divInformacion.innerHTML = "Todos los capos son correctos";
+        }
     })
 
-    //Funciones de validación
+    //******************** Funciones de validación ************************
+
     function fechaValida(fecha) {
         //Usamos función regular
-        if (/^(?:3[01]|[12][0-9]|0?[1-9])([\-/.])(0?[1-9]|1[1-2])\1\d{4}$/.test(fecha)) return true;
+        if (/^[0-2][0-9][\-/.][0-1][0-2][\-/.][0-9]{4}$/.test(fecha)) return true;
         return false;
     }
 
@@ -53,7 +86,7 @@ window.onload = function() {
     }
 
     function pesoValido(peso) {
-        if (/^[1-4][0-9]?$|^50$|^0$/.test(peso)) return true;
+        if (/^[5-9][0-9]$|^[1-4][0-9][0-9]$|^500$/.test(peso)) return true;
         return false;
     }
 
